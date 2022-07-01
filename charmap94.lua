@@ -1,3 +1,5 @@
+local S = require "shift"
+
 local chars = {}
 for i = 33, 126 do
 	chars[#chars+1] = string.char(i)
@@ -17,35 +19,6 @@ for i = 0, charcount-1 do
 	end
 end
 
-local function shift(str, offset)
-	offset = math.floor(tonumber(offset) or 0) % charcount
-	return string.gsub(str, ".", charmap[offset])
-end
-
-local function unshift(str, offset)
-	return shift(str, -offset)
-end
-
-local function shiftchar(char, offset)
-	offset = math.floor(tonumber(offset) or 0) % charcount
-	return charmap[offset][char] or char
-end
-
-local function unshiftchar(char, offset)
-	return shiftchar(char, -offset)
-end
-
---[[
-for i = 0, charcount-1 do
-	print(i, shift(chars, i))
-end
-]]
-
-return {
-	chars = chars,
-	nchars = nchars,
-	shift = shift,
-	unshift = unshift,
-	shiftchar = shiftchar,
-	unshiftchar = unshiftchar,
-}
+local t = S.mkfuncs(charmap, charcount)
+t.chars = chars
+return t
