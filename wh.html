@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Custom cipher</title>
+		<script async src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+	</head>
+	<body>
+		This is a custom cipher using the <a href="https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill">Wichmann-Hill</a> PRNG.<br/>
+		Seed:
+		<input type="number" id="x"/>
+		<input type="number" id="y"/>
+		<input type="number" id="z"/>
+		<button onclick="encipher()">Encipher</button>
+		<button onclick="decipher()">Decipher</button>
+		<br/>
+		<textarea id="input"></textarea><br/>
+		<pre id="output"></pre>
+		<script>
+			var e_x = document.getElementById("x");
+			var e_y = document.getElementById("y");
+			var e_z = document.getElementById("z");
+			var e_input = document.getElementById("input");
+			var e_output = document.getElementById("output");
+		</script>
+		<script type="application/lua">
+			local js = require "js"
+			local R = require "wichmann-hill"
+			local S = require "wh_shift"
+			local G = js.global
+			local function updateSeed()
+				local x, y, z = R.try_new(G.e_x.value, G.e_y.value, G.e_z.value)
+				G.e_x.value, G.e_y.value, G.e_z.value = x, y, z
+				return x, y, z
+			end
+			function G.encipher()
+				G.e_output.innerHTML = S.shift(G.e_input.value, updateSeed())
+			end
+			function G.decipher()
+				G.e_output.innerHTML = S.unshift(G.e_input.value, updateSeed())
+			end
+		</script>
+	</body>
+</html>

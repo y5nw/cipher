@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Caesar cipher</title>
+		<script async src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+	</head>
+	<body>
+		<input type="number" id="offset"/>
+		<button onclick="calculate()">Calculate</button><br/>
+		Input:<br/>
+		<textarea id="input"></textarea><br/>
+		Output:<br/>
+		<textarea id="output" readonly></textarea>
+		<script>
+			var e_input = document.getElementById("input");
+			var e_output = document.getElementById("output");
+			var e_offset = document.getElementById("offset");
+		</script>
+		<script type="application/lua">
+			local js = require "js"
+			local S = require "caesar-shift"
+			local G = js.global
+			G.calculate = function()
+				G.e_output.value = S.shift(G.e_input.value, G.e_offset.value)
+			end
+		</script>
+	</body>
+</html>

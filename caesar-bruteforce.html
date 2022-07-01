@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Caesar cipher brute-force cracker</title>
+		<script async src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+	</head>
+	<body>
+		<textarea id="input"></textarea><br/>
+		<button onclick="calculate()">Calculate</button><br/>
+		<pre id="output"></pre>
+		<script>
+			var e_input = document.getElementById("input");
+			var e_output = document.getElementById("output");
+		</script>
+		<script type="application/lua">
+			local js = require "js"
+			local S = require "caesar-shift"
+			local G = js.global
+			function G.calculate()
+				local s = {}
+				for i = 1, 25 do
+					s[i] = string.format("%d: %s", i, S.shift(G.e_input.value, i))
+					G.e_output.innerHTML = table.concat(s, "\n\n")
+				end
+			end
+		</script>
+	</body>
+</html>
