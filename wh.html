@@ -3,6 +3,7 @@
 	<head>
 		<title>Custom cipher</title>
 		<script async src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+		<script async src="https://unpkg.com/mathjax/es5/tex-svg.js"></script>
 		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body>
@@ -39,5 +40,17 @@
 				G.e_output.innerHTML = S.unshift(G.e_input.value, updateSeed())
 			end
 		</script>
+		<hr/>
+		The PRNG works by calculating the internal states as follows:
+		\[
+		\begin{eqnarray}
+			x_{n+1} &=& (171x_n) \bmod 30269 \\
+			y_{n+1} &=& (172y_n) \bmod 30307 \\
+			z_{n+1} &=& (170z_n) \bmod 30323
+		\end{eqnarray}
+		\]
+		The result is calculated using
+		\[ r = \left( \frac{x}{30269} + \frac{y}{30307} + \frac{z}{30323} \right) \bmod 1 \]
+		For this cipher, the ASCII characters between 33 and 126 (inclusive) are shifted. The shift is calculated using the result above: \[ s = \left\lfloor 94r \right\rfloor \]
 	</body>
 </html>

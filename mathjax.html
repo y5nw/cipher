@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MathJax test</title>
+		<script src="https://unpkg.com/mathjax/es5/tex-svg-full.js"></script>
+		<link rel="stylesheet" href="style.css"/>
+	</head>
+	<body>
+		This is not particularly related to cipher, but is occasionally useful for previewing TeX math in places where this is otherwise inconvenient.
+		<textarea id="input" class="largetextarea" oninput="update()"></textarea>
+		<div id="output"><div>
+		<script>
+			const e_input = document.getElementById("input");
+			const e_output = document.getElementById("output");
+			function update() {
+				e_output.innerHTML = MathJax.tex2svg(e_input.value).outerHTML;
+			}
+			update()
+		</script>
+	</body>
+</html>
