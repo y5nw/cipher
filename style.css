@@ -27,3 +27,12 @@ table.withborder, table.withborder td, table.withborder th {
 body * {
 	margin: 5px 0px;
 }
+
+table.tighttable * {
+	margin: 0;
+	padding: 0;
+}
+
+.fillheight {
+	height: 100%;
+}

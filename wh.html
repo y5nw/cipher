@@ -8,12 +8,21 @@
 	</head>
 	<body>
 		This is a custom cipher using the <a href="https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill">Wichmann-Hill</a> PRNG.<br/>
-		Seed:
-		<input type="number" id="x"/>
-		<input type="number" id="y"/>
-		<input type="number" id="z"/>
-		<button onclick="encipher()">Encipher</button>
-		<button onclick="decipher()">Decipher</button>
+		<table class="tighttable">
+			<tr>
+				<td rowspan="3">Seed</td>
+				<td><input type="number" id="x"/></td>
+				<td><button onclick="encipher()">Encipher</button></td>
+			</tr>
+			<tr>
+				<td><input type="number" id="y"/></td>
+				<td><button onclick="decipher()">Decipher</button></td>
+			</tr>
+			<tr>
+				<td><input type="number" id="z"/></td>
+			</tr>
+			<tr/>
+		</table>
 		<textarea id="input" class="largetextarea"></textarea>
 		<pre id="output" class="textcontent"></pre>
 		<script>
