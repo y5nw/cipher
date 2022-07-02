@@ -3,14 +3,14 @@
 	<head>
 		<title>Caesar cipher</title>
 		<script async src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<body>
-		<input type="number" id="offset"/>
-		<button onclick="calculate()">Calculate</button><br/>
-		Input:<br/>
-		<textarea id="input"></textarea><br/>
-		Output:<br/>
-		<textarea id="output" readonly></textarea>
+		<label>Offset:</label>
+		<input type="number" id="offset" value="1"/>
+		<button onclick="calculate()">Calculate</button>
+		<textarea id="input" class="largetextarea" placeholder="Input text here" oninput="calculate()"></textarea>
+		<pre id="output" class="textcontent"></pre>
 		<script>
 			var e_input = document.getElementById("input");
 			var e_output = document.getElementById("output");
@@ -21,8 +21,9 @@
 			local S = require "caesar-shift"
 			local G = js.global
 			G.calculate = function()
-				G.e_output.value = S.shift(G.e_input.value, G.e_offset.value)
+				G.e_output.innerHTML = S.shift(G.e_input.value, G.e_offset.value)
 			end
+			G.calculate()
 		</script>
 	</body>
 </html>

@@ -3,6 +3,7 @@
 	<head>
 		<title>Custom cipher</title>
 		<script async src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body>
 		This is a custom cipher using the <a href="https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill">Wichmann-Hill</a> PRNG.<br/>
@@ -12,9 +13,8 @@
 		<input type="number" id="z"/>
 		<button onclick="encipher()">Encipher</button>
 		<button onclick="decipher()">Decipher</button>
-		<br/>
-		<textarea id="input"></textarea><br/>
-		<pre id="output"></pre>
+		<textarea id="input" class="largetextarea"></textarea>
+		<pre id="output" class="textcontent"></pre>
 		<script>
 			var e_x = document.getElementById("x");
 			var e_y = document.getElementById("y");

@@ -3,11 +3,11 @@
 	<head>
 		<title>Caesar cipher brute-force cracker</title>
 		<script async src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body>
-		<textarea id="input"></textarea><br/>
-		<button onclick="calculate()">Calculate</button><br/>
-		<pre id="output"></pre>
+		<textarea id="input" class="largetextarea" oninput="calculate()"></textarea>
+		<div id="output" class="textcontent"></div>
 		<script>
 			var e_input = document.getElementById("input");
 			var e_output = document.getElementById("output");
@@ -16,13 +16,15 @@
 			local js = require "js"
 			local S = require "caesar-shift"
 			local G = js.global
+			local E = G.new_element
 			function G.calculate()
-				local s = {}
+				local s = {'<tr><th colspan="2">Offset</th><th>Text</th></tr>'}
 				for i = 1, 25 do
-					s[i] = string.format("%d: %s", i, S.shift(G.e_input.value, i))
-					G.e_output.innerHTML = table.concat(s, "\n\n")
+					s[i+1] = string.format('<tr><td>+%d</td><td>%d</td><td><pre class="textcontent">%s</pre></td></tr>', i, i-26, S.shift(G.e_input.value, i))
 				end
+				G.e_output.innerHTML=string.format('<table class="withborder">%s</table>', table.concat(s))
 			end
+			G.calculate()
 		</script>
 	</body>
 </html>

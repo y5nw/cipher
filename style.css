@@ -1,0 +1,29 @@
+textarea.largetextarea {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+	resize: none;
+	height: 35vh;
+}
+
+pre.textcontent {
+	box-sizing: border-box;
+	width: 100%;
+	white-space: pre-wrap;
+}
+
+body {
+	margin: 0;
+	padding: 10px;
+}
+
+table.withborder, table.withborder td, table.withborder th {
+	border: solid 1px black;
+	padding: 0px 5px;
+	border-collapse: collapse;
+}
+
+body * {
+	margin: 5px 0px;
+}
